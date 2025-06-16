@@ -1,7 +1,10 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { iconMap } from "../../types/icon/icon.type.ts";
 import { useState, useEffect } from "react";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import {ChevronDown, ChevronRight} from "lucide-react";
+import styled from "styled-components";
+import * as React from "react";
+import {AnimatePresence, motion} from "framer-motion";
 
 type IconType = keyof typeof iconMap;
 
@@ -77,42 +80,78 @@ export default function SidebarItem({ doc, depth = 0 }: SidebarItemProps) {
 
   return (
     <li>
-      <div
+      <ItemContainer
+        depth={depth}
+        isActive={isActive}
         onClick={handleClick}
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          paddingLeft: `${depth * 1.5}rem`,
-          marginBottom: '0.5rem',
-          cursor: 'pointer',
-          color: isActive ? '#2563eb' : doc.isDirectory ? '#666' : '#000',
-          backgroundColor: isActive ? '#f3f4f6' : 'transparent',
-          padding: '0.5rem',
-          borderRadius: '0.25rem',
-          userSelect: 'none',
-        }}
       >
-        <span style={{ 
-          display: 'flex',
-          alignItems: 'center',
-          flex: 1,
-        }}>
+        <ItemContent>
           <Icon size={18} style={{ marginRight: '0.5rem' }} />
           {doc.title}
-        </span>
+        </ItemContent>
         {hasChildren && (
-          <span onClick={handleOpen} style={{ marginRight: '0.25rem', display: 'flex', alignItems: 'center' }}>
+          <ChevronWrapper onClick={handleOpen}>
             {isExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
-          </span>
+          </ChevronWrapper>
         )}
-      </div>
-      {hasChildren && isExpanded && (
-        <ul style={{ listStyle: 'none', padding: 0, marginLeft: '0.5rem' }}>
-          {doc.children?.map(child => (
-            <SidebarItem key={child.path} doc={child} depth={depth + 1} />
-          ))}
-        </ul>
-      )}
+      </ItemContainer>
+      <AnimatePresence>
+        {hasChildren && isExpanded && (
+          <ChildrenWrapper
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.15 }}
+          >
+            {doc.children?.map(child => (
+              <SidebarItem key={child.path} doc={child} depth={depth + 1} />
+            ))}
+          </ChildrenWrapper>
+        )}
+      </AnimatePresence>
     </li>
   );
 }
+
+interface ItemContainerProps {
+  depth: number;
+  isActive: boolean;
+}
+
+const ItemContainer = styled.div<ItemContainerProps>`
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    margin-left: ${({depth}) => depth * 0.8}rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    color: ${({theme, isActive}) => isActive ? theme.primaryNormal : theme.labelAlternative};
+    background-color: ${({isActive}) => isActive ? '#eff9ff' : 'transparent'};
+    border-radius: 0.25rem;
+    user-select: none;
+    flex: 1;
+
+    &:hover {
+        background-color: ${({theme}) => theme.primaryAssistive};
+    }
+`
+
+const ItemContent = styled.span`
+    display: flex;
+    align-items: center;
+    flex: 1;
+`
+
+const ChevronWrapper = styled.span`
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    &:hover {
+        background-color: ${({theme}) => theme.primaryAssistive};
+    }
+`;
+
+const ChildrenWrapper = styled(motion.ul)`
+    margin-left: 1.25rem;
+    list-style: none;
+`

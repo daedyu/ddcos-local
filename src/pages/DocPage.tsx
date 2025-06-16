@@ -39,7 +39,7 @@ export default function DocPage() {
 
 const MainContainer = styled.main`
     padding: 32px 42px;
-    flex: 1;
+    flex: 8;
     
-    background-color: ${({theme}) => theme.backgroundNormal}
+    height: 100vh;
 `

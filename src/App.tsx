@@ -26,4 +26,9 @@ export default App
 
 const MainContainer = styled.div`
     display: flex;
+    background: linear-gradient(
+        to top right, 
+        ${({theme}) => theme.backgroundAlternative} 70%, 
+        ${({theme}) => theme.primaryAlternative} 200%
+    );
 `
