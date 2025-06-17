@@ -15,7 +15,6 @@ export function Sidebar() {
 }
 
 const SidebarContainer = styled.div`
-    flex: 2;
     padding: 1rem;
     transition: all 0.3s ease-in-out;
 `

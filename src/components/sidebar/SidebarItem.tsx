@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { iconMap } from "../../types/icon/icon.type.ts";
 import { useState, useEffect } from "react";
-import {ChevronDown, ChevronRight} from "lucide-react";
+import {ChevronRight} from "lucide-react";
 import styled from "styled-components";
 import * as React from "react";
 import {AnimatePresence, motion} from "framer-motion";
@@ -90,8 +90,8 @@ export default function SidebarItem({ doc, depth = 0 }: SidebarItemProps) {
           {doc.title}
         </ItemContent>
         {hasChildren && (
-          <ChevronWrapper onClick={handleOpen}>
-            {isExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+          <ChevronWrapper transition={{duration: 0.15}} animate={{ rotate: isExpanded ? 90 : 0 }} onClick={handleOpen}>
+            <ChevronRight size={16} />
           </ChevronWrapper>
         )}
       </ItemContainer>
@@ -142,7 +142,7 @@ const ItemContent = styled.span`
     flex: 1;
 `
 
-const ChevronWrapper = styled.span`
+const ChevronWrapper = styled(motion.span)`
     display: flex;
     align-items: center;
     border-radius: 50%;

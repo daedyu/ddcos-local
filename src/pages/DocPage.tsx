@@ -20,11 +20,9 @@ function findDoc(path: string) {
 
 export default function DocPage() {
   const { '*': slug } = useParams()
-  const path = '/' + (slug || '')
+  const path = '/' + (slug || 'index')
   
   const doc = findDoc(path);
-  console.log('Current path:', path);
-  console.log('Found doc:', doc);
 
   if (!doc || !doc.Component) return <div>문서를 찾을 수 없습니다.</div>
 
@@ -38,8 +36,6 @@ export default function DocPage() {
 }
 
 const MainContainer = styled.main`
-    padding: 32px 42px;
     flex: 8;
-    
     height: 100vh;
 `
