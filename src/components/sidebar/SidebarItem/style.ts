@@ -11,7 +11,6 @@ interface ItemProps {
   directory: boolean;
 }
 
-
 export const ItemContainer = styled.div<ItemContainerProps>`
     display: flex;
     align-items: center;
@@ -33,8 +32,8 @@ export const ItemContainer = styled.div<ItemContainerProps>`
 export const ItemContent = styled.span<ItemProps>`
     display: flex;
     align-items: center;
+    color: ${({theme, directory}) => directory ? theme.labelNormal : ''};
     flex: 1;
-    color: ${({theme, directory}) => directory ? theme.labelNormal : theme.labelAlternative};
     font-weight: ${({directory}) => directory ? 'bold' : 'normal'};
 `
 
