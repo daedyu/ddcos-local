@@ -8,4 +8,5 @@ export default function MdHeader() {
 
 const HeaderContent = styled.img`
     width: 80%;
+    margin-left: 0 !important;
 `

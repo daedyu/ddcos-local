@@ -1,14 +1,13 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import DocPage from "./pages/DocPage.tsx";
 import {Sidebar} from "./components/sidebar/Sidebar.tsx";
-import {DodamGlobalStyles, DodamThemeProvider} from "@b1nd/dds-web";
 import styled from "styled-components";
 import Header from "./components/header/Header";
+import ThemeProvider from "./components/theme/ThemeProvider";
 
 export default function App() {
   return (
-    <DodamThemeProvider theme={'LIGHT'}>
-      <DodamGlobalStyles />
+    <ThemeProvider>
       <BrowserRouter>
         <AppWrapper>
           <Header />
@@ -18,13 +17,13 @@ export default function App() {
             </SidebarWrapper>
             <MainScrollArea>
               <Routes>
-                <Route path="*" element={<DocPage />} />
+                <Route path="*" element={<DocPage/>} />
               </Routes>
             </MainScrollArea>
           </BodyWrapper>
         </AppWrapper>
       </BrowserRouter>
-    </DodamThemeProvider>
+    </ThemeProvider>
   )
 }
 
@@ -33,6 +32,8 @@ const AppWrapper = styled.div`
     flex-direction: column;
     height: 100vh;
     overflow: hidden;
+    
+    color: ${({ theme }) => theme.labelNormal};
 
     background: linear-gradient(
             to top right,
@@ -59,4 +60,21 @@ const MainScrollArea = styled.main`
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  
+    padding-left: 1em;
+    gap: 1em;
+
+    scrollbar-width: thin;
+    scrollbar-color: ${({ theme }) => theme.primaryAlternative} transparent;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(100, 100, 100, 0.5);
+        border-radius: 4px;
+    }
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
 `;

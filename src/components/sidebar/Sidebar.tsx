@@ -1,13 +1,21 @@
-import { docs } from "../../utils/docs/docs.loader.ts";
-import SidebarItem from "./SidebarItem.tsx";
 import styled from "styled-components";
+import SidebarItem from "./SidebarItem";
+import {useRecoilValue} from "recoil";
+import {documentNormalizedTree} from "../../store/docs/docs.store";
 
 export function Sidebar() {
+  const tree = useRecoilValue(documentNormalizedTree)
+
   return (
     <SidebarContainer>
       <SidebarItems>
-        {docs.map(doc => (
-          <SidebarItem key={doc.path} doc={doc} />
+        {(tree.childrenByParentId['root'] || []).map(rootId => (
+          <SidebarItem
+            key={rootId}
+            depth={0}
+            path={rootId}
+            normalizeTree={tree}
+          />
         ))}
       </SidebarItems>
     </SidebarContainer>

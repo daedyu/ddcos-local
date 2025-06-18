@@ -2,7 +2,6 @@ import * as React from "react";
 
 export interface ItemNode {
   id: string;
-  path: string;
   parentId: string | null;
   title: string;
   icon: string;

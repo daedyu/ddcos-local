@@ -54,6 +54,7 @@ const SearchBar = styled.button`
     gap: 10px;
     width: 500px;
     height: 40px;
+    color: ${({ theme }) => theme.labelNormal};
     ${DodamShape.ExtraSmall}
     border: ${({ theme }) => `0.5px solid ${theme.primaryAlternative}`};
     background-color: ${({ theme }) => theme.backgroundNormal};
