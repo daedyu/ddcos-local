@@ -1,9 +1,9 @@
-import {BrowserRouter, Route, Routes} from "react-router-dom";
-import DocPage from "./pages/DocPage.tsx";
+import {BrowserRouter} from "react-router-dom";
 import {Sidebar} from "./components/sidebar/Sidebar.tsx";
 import styled from "styled-components";
 import Header from "./components/header/Header";
 import ThemeProvider from "./components/theme/ThemeProvider";
+import Router from "./components/router/Rotuer";
 
 export default function App() {
   return (
@@ -16,9 +16,7 @@ export default function App() {
               <Sidebar />
             </SidebarWrapper>
             <MainScrollArea>
-              <Routes>
-                <Route path="*" element={<DocPage/>} />
-              </Routes>
+              <Router/>
             </MainScrollArea>
           </BodyWrapper>
         </AppWrapper>

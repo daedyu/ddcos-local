@@ -2,10 +2,13 @@ import styled from "styled-components";
 import {Search} from "lucide-react";
 import {useNavigate} from "react-router-dom";
 import {DodamShape} from "@b1nd/dds-web";
+import {Select} from "./Select";
+import {themePreferenceAtom} from "../../store/theme/theme.store";
+import {useRecoilState} from "recoil";
 
 export default function Header() {
   const navigate = useNavigate();
-
+  const [theme, setTheme] = useRecoilState(themePreferenceAtom);
     return (
         <HeaderContainer>
           <LogoWrapper onClick={() => navigate('/')}>
@@ -16,6 +19,7 @@ export default function Header() {
             <Search/>
             Search...
           </SearchBar>
+          <Select items={['DARK', 'LIGHT', 'SYSTEM']} value={theme} onSelectedItemChange={ (value) => setTheme(value as 'DARK' | 'LIGHT' | 'SYSTEM')}/>
         </HeaderContainer>
     );
 }
@@ -41,8 +45,8 @@ const HeaderContainer = styled.header`
     flex-shrink: 0;
     display: flex;
     padding-left: 8em;
-    padding-right: 40vw;
     align-items: center;
+    padding-right: 8vw;
     justify-content: space-between;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     z-index: 10;
@@ -53,6 +57,7 @@ const SearchBar = styled.button`
     align-items: center;
     gap: 10px;
     width: 500px;
+    margin: 0 auto;
     height: 40px;
     color: ${({ theme }) => theme.labelNormal};
     ${DodamShape.ExtraSmall}
