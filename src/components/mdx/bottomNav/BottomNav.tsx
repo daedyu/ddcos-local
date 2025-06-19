@@ -1,6 +1,6 @@
 import useBottomNav from "../../../hooks/bottomNav/useBottomNav";
 import styled from "styled-components";
-import {DodamShape} from "@b1nd/dds-web";
+import {DodamShape, DodamTypography} from "@b1nd/dds-web";
 import {ChevronLeft, ChevronRight} from "lucide-react";
 
 export default function BottomNav() {
@@ -13,8 +13,8 @@ export default function BottomNav() {
                 <BottomNavItem onClick={handleClick(prev.id)}>
                     <ChevronLeft size={18} />
                     <NavTextWrapper align="end">
-                        <p>prev</p>
-                        <p>{prev.title}</p>
+                        <NavText>prev</NavText>
+                        <NavTitle>{prev.title}</NavTitle>
                     </NavTextWrapper>
                 </BottomNavItem>
             )}
@@ -22,8 +22,8 @@ export default function BottomNav() {
             {next && (
                 <BottomNavItem onClick={handleClick(next.id)}>
                     <NavTextWrapper align="start">
-                        <p>next</p>
-                        <p>{next.title}</p>
+                        <NavText>next</NavText>
+                        <NavTitle>{next.title}</NavTitle>
                     </NavTextWrapper>
                     <ChevronRight size={18} />
                 </BottomNavItem>
@@ -31,6 +31,15 @@ export default function BottomNav() {
         </BottomNavContainer>
     );
 }
+
+const NavText = styled.p`
+    color: ${({ theme }) => theme.labelAssistive};
+    ${DodamTypography.Label.Regular};
+`
+
+const NavTitle = styled.p`
+    ${DodamTypography.Headline.Bold};
+`
 
 const BottomNavContainer = styled.div`
     height: 80px;
