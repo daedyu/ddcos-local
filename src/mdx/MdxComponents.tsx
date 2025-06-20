@@ -5,6 +5,7 @@ import BottomNav from "../components/mdx/bottomNav/BottomNav";
 import DangerBox from "../components/mdx/boxes/DangerBox";
 import APITester from "../components/mdx/api/APITester";
 import Nav from "../components/nav/Nav";
+import {Clock} from "@b1nd/dds-web";
 
 export const mdxComponents = {
   InfoBox,
@@ -13,5 +14,6 @@ export const mdxComponents = {
   MdHeader,
   BottomNav,
   APITester,
-  Nav
+  Nav,
+  Clock
 }

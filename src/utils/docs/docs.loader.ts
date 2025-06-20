@@ -45,7 +45,7 @@ function createDirectoryNodes(filePaths: string[]): ItemNode[] {
 
 function createFileNodes(): ItemNode[] {
   return Object.entries(rawModules).map(([path, raw]) => {
-    const filePath = path.replace('../../docs/', '').replace('.mdx', '').replace('.', '/');
+    const filePath = path.replace('../../docs/', '').replace('.mdx', '').replace(/\./g, '/');
     const { title, icon, order } = parseFrontMatter(raw as string);
     const fileName = filePath.split('/').pop() ?? 'Untitled';
 
@@ -53,7 +53,7 @@ function createFileNodes(): ItemNode[] {
       id: filePath,
       parentId: filePath.includes('/') ? filePath.substring(0, filePath.lastIndexOf('/')) : null,
       title: title ?? fileName,
-      icon: icon ?? 'file',
+      icon: icon,
       order: order ?? 99,
       isDirectory: false,
       Component: (modules as Record<string, { default: React.ComponentType }>)[path].default
