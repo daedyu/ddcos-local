@@ -19,7 +19,7 @@ export default function SidebarItem({ path, depth = 0 }: SidebarItemProps) {
                 onClick={handleClick}
             >
                 <S.ItemContent directory={docs.isDirectory ? docs.isDirectory : false}>
-                    <Icon size={18} style={{ marginRight: '0.5rem' }} />
+                    {Icon && <Icon size={18} style={{marginRight: '0.5rem'}}/>}
                     {docs.title}
                 </S.ItemContent>
                 {hasChildren && (

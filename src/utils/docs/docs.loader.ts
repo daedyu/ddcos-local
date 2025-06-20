@@ -37,7 +37,6 @@ function createDirectoryNodes(filePaths: string[]): ItemNode[] {
       id: dir,
       parentId: dir.includes('/') ? dir.substring(0, dir.lastIndexOf('/')) : null,
       title: dir.split('/').pop() ?? 'Untitled',
-      icon: 'folder',
       order: 0,
       isDirectory: true,
     } as ItemNode

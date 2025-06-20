@@ -45,7 +45,7 @@ export default function useSidebar({path}: UseSidebarProps) {
         }
     };
 
-    const Icon = iconMap[docs.icon as IconType] || (docs.isDirectory ? iconMap.folder : null);
+    const Icon = iconMap[docs.icon as IconType] || null;
 
     const children = normalizedTree.childrenByParentId[path];
 

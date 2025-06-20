@@ -13,7 +13,7 @@ export default function BottomNav() {
                 <BottomNavItem onClick={handleClick(prev.id)}>
                     <ChevronLeft size={18} />
                     <NavTextWrapper align="end">
-                        <NavText>prev</NavText>
+                        <NavText>Prev</NavText>
                         <NavTitle>{prev.title}</NavTitle>
                     </NavTextWrapper>
                 </BottomNavItem>
@@ -22,7 +22,7 @@ export default function BottomNav() {
             {next && (
                 <BottomNavItem onClick={handleClick(next.id)}>
                     <NavTextWrapper align="start">
-                        <NavText>next</NavText>
+                        <NavText>Next</NavText>
                         <NavTitle>{next.title}</NavTitle>
                     </NavTextWrapper>
                     <ChevronRight size={18} />
@@ -46,6 +46,7 @@ const BottomNavContainer = styled.div`
     width: 55%;
     display: flex;
     gap: 13px;
+    margin-top: 1.5%;
     margin-bottom: 20%;
     * {
         margin: 0 !important;

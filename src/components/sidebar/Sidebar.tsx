@@ -2,6 +2,7 @@ import styled from "styled-components";
 import SidebarItem from "./SidebarItem";
 import {useRecoilValue} from "recoil";
 import {documentNormalizedTree} from "../../store/docs/docs.store";
+import {DodamTypography} from "@b1nd/dds-web";
 
 export function Sidebar() {
     const tree = useRecoilValue(documentNormalizedTree)
@@ -27,6 +28,7 @@ const SidebarContainer = styled.div`
 `
 
 const SidebarItems = styled.ul`
+    ${DodamTypography.Label.Regular};
     list-style: none;
     padding: 0;
 `

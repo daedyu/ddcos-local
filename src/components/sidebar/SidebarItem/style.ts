@@ -16,7 +16,7 @@ export const ItemContainer = styled.div<ItemContainerProps>`
     align-items: center;
     padding: 0.5rem;
     margin-left: ${({depth}) => depth * 0.8}rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.2rem;
     cursor: pointer;
     color: ${({theme, $active}) => $active ? theme.primaryNormal : theme.labelAlternative};
     background-color: ${({theme, $active}) => $active ? lighten(0.3, theme.primaryAssistive) : 'transparent'};

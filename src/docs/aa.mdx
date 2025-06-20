@@ -20,6 +20,22 @@ order: 0
 - # asdasdsa
 - adsad
 
+# 토큰재발급
+<APITester
+    method="POST"
+    url="/token/reissue"
+    host="https://dauth_server"
+    headers={{ "Authorization": "Bearer example_token" }}
+    bodySchema={{
+        refresh: { type: "string", required: true },
+        clientId: { type: "string", required: true }
+    }}
+    defaultBody={{
+        refresh: "text",
+        clientId: "text"
+    }}
+/>
+
 # asdasdsa
 # asdasdsa
 # asdasdsa
