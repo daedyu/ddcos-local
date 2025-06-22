@@ -4,7 +4,7 @@ import {useRecoilValue} from "recoil";
 import {resolvedThemeSelector} from "../../../store/theme/theme.store";
 import {darken, lighten} from "polished";
 import {Box} from "./Box";
-import {TriangleAlert} from "lucide-react";
+import {OctagonAlert} from "lucide-react";
 
 export default function DangerBox({ children }: { children: React.ReactNode }) {
     const theme = useTheme();
@@ -14,7 +14,7 @@ export default function DangerBox({ children }: { children: React.ReactNode }) {
 
     return (
         <Box
-            icon={TriangleAlert}
+            icon={OctagonAlert}
             color={theme.statusNegative}
             backgroundColor={backgroundColor}
         >

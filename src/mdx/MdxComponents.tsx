@@ -6,11 +6,13 @@ import DangerBox from "../components/mdx/boxes/DangerBox";
 import APITester from "../components/mdx/api/APITester";
 import Nav from "../components/nav/Nav";
 import {Clock} from "@b1nd/dds-web";
+import SuccessBox from "../components/mdx/boxes/SuccessBox";
 
 export const mdxComponents = {
   InfoBox,
   WarningBox,
   DangerBox,
+  SuccessBox,
   MdHeader,
   BottomNav,
   APITester,
