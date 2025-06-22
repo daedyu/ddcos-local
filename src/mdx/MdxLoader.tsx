@@ -7,6 +7,7 @@ import {DodamTypography} from "@b1nd/dds-web";
 export function MDXWrapper({ children }: { children: ReactNode }) {
   return (
     <MdxContainer>
+        {/*mdx 파일 가져오기*/}
       <MDXProvider components={mdxComponents}>{children}</MDXProvider>
     </MdxContainer>
   );

@@ -7,21 +7,29 @@ import Router from "./components/router/Rotuer";
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <BrowserRouter>
-        <AppWrapper>
-          <Header />
-          <BodyWrapper>
-            <SidebarWrapper>
-              <Sidebar />
-            </SidebarWrapper>
-            <MainScrollArea>
-              <Router/>
-            </MainScrollArea>
-          </BodyWrapper>
-        </AppWrapper>
-      </BrowserRouter>
-    </ThemeProvider>
+      <ThemeProvider>
+            {/*라우터 지정*/}
+            <BrowserRouter>
+                {/*div 래핑*/}
+                <AppWrapper>
+                    {/*헤더 지정*/}
+                    <Header />
+                    {/*body div 래핑*/}
+                    <BodyWrapper>
+                        {/*sidebar div 래핑*/}
+                        <SidebarWrapper>
+                            {/*sidebar 컴포넌트 호출*/}
+                            <Sidebar />
+                        </SidebarWrapper>
+                        {/*메인 스크롤 공간*/}
+                        <MainScrollArea>
+                            {/*라우터 호출*/}
+                            <Router/>
+                        </MainScrollArea>
+                    </BodyWrapper>
+                </AppWrapper>
+            </BrowserRouter>
+      </ThemeProvider>
   )
 }
 

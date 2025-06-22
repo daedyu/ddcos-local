@@ -8,6 +8,7 @@ import Nav from "../components/nav/Nav";
 import {Clock} from "@b1nd/dds-web";
 import SuccessBox from "../components/mdx/boxes/SuccessBox";
 
+// mdx 컴포넌트 지정
 export const mdxComponents = {
   InfoBox,
   WarningBox,

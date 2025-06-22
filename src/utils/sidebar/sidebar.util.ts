@@ -1,7 +1,9 @@
 import type {ItemNode, NormalizedTree} from "../../types/sidebar/sidebar.type";
 
 export function normalizeTree(nodes: ItemNode[]): NormalizedTree {
+  //객체 map
   const byId: Record<string, ItemNode> = {};
+  //객체 관계 배열
   const childrenByParentId: Record<string, string[]> = {};
 
   for (const node of nodes) {

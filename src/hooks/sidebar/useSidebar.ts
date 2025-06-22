@@ -11,6 +11,7 @@ interface UseSidebarProps {
     path: string;
 }
 
+//sidebar hooks
 export default function useSidebar({path}: UseSidebarProps) {
     const normalizedTree = useRecoilValue(documentNormalizedTree)
     const location = useLocation();
@@ -21,16 +22,19 @@ export default function useSidebar({path}: UseSidebarProps) {
     const isParent = location.pathname.startsWith('/' + path)
     const [isExpanded, setIsExpanded] = useState(!hasChildren ? false: isParent);
 
+    //자식 파일을 조회할시
     useEffect(() => {
         if (isParent) setIsExpanded(true);
     }, [isParent]);
 
+    // 오픈 머튼을 누르면 생기는일
     const handleOpen = (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
         setIsExpanded(!isExpanded);
     }
 
+    // 객체를 클릭하면 생기는일
     const handleClick = (e: React.MouseEvent) => {
         if (hasChildren) {
             e.preventDefault();
@@ -45,8 +49,10 @@ export default function useSidebar({path}: UseSidebarProps) {
         }
     };
 
+    //mdx 아이콘 맵으로 component 반환
     const Icon = iconMap[docs.icon as IconType] || null;
 
+    // 자식반환
     const children = normalizedTree.childrenByParentId[path];
 
     return {

@@ -3,6 +3,7 @@ import * as React from "react";
 import type {FrontMatter} from "../../types/docs/docs.type";
 import type {ItemNode} from "../../types/sidebar/sidebar.type";
 
+//raw 데이터 모듈 호츌
 const rawModules = import.meta.glob('../../docs/**/*.mdx', {
   eager: true,
   query: '?raw',
@@ -23,6 +24,7 @@ function parseFrontMatter(raw: string): FrontMatter {
   }
 }
 
+//폴더 노드 호출
 function createDirectoryNodes(filePaths: string[]): ItemNode[] {
   const directories = new Set<string>();
 
@@ -33,6 +35,7 @@ function createDirectoryNodes(filePaths: string[]): ItemNode[] {
     }
   }
 
+  // itemNode 객체 배열 생성 후 반환
   return Array.from(directories).map(dir => ({
       id: dir,
       parentId: dir.includes('/') ? dir.substring(0, dir.lastIndexOf('/')) : null,
@@ -43,12 +46,18 @@ function createDirectoryNodes(filePaths: string[]): ItemNode[] {
   ));
 }
 
+// 파일 노드 호출
 function createFileNodes(): ItemNode[] {
+  //ItemNode 객체 배열 반환
   return Object.entries(rawModules).map(([path, raw]) => {
+    // 파일 조회
     const filePath = path.replace('../../docs/', '').replace('.mdx', '').replace(/\./g, '/');
+    // frontMatter 조회
     const { title, icon, order } = parseFrontMatter(raw as string);
+    // 파일명 조회
     const fileName = filePath.split('/').pop() ?? 'Untitled';
 
+    //ItemNode 객체 반환
     return {
       id: filePath,
       parentId: filePath.includes('/') ? filePath.substring(0, filePath.lastIndexOf('/')) : null,
@@ -61,6 +70,7 @@ function createFileNodes(): ItemNode[] {
   });
 }
 
+// 평탄화 트리 호출
 export function loadFlatNodes(): ItemNode[] {
   const filePaths = Object.keys(rawModules).map(path =>
     path.replace('../../docs/', '').replace('.mdx', '')
@@ -68,6 +78,6 @@ export function loadFlatNodes(): ItemNode[] {
 
   const fileNodes = createFileNodes();
   const dirNodes = createDirectoryNodes(filePaths);
-
+  //파일과 폴더 노드 합쳐서 반환
   return [...fileNodes, ...dirNodes];
 }
