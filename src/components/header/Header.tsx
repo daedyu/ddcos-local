@@ -15,10 +15,10 @@ export default function Header() {
             <Logo src="/b1nd.svg" />
             <h3>DDocs</h3>
           </LogoWrapper>
-          <SearchBar>
-            <Search/>
-            Search...
-          </SearchBar>
+          {/*<SearchBar>*/}
+          {/*  <Search/>*/}
+          {/*  Search...*/}
+          {/*</SearchBar>*/}
           <Select items={['DARK', 'LIGHT', 'SYSTEM']} value={theme} onSelectedItemChange={ (value) => setTheme(value as 'DARK' | 'LIGHT' | 'SYSTEM')}/>
         </HeaderContainer>
     );
