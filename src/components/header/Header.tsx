@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import {Search} from "lucide-react";
 import {useNavigate} from "react-router-dom";
-import {DodamShape} from "@b1nd/dds-web";
+// import {DodamShape} from "@b1nd/dds-web";
 import {Select} from "./Select";
 import {themePreferenceAtom} from "../../store/theme/theme.store";
 import {useRecoilState} from "recoil";
@@ -52,21 +51,21 @@ const HeaderContainer = styled.header`
     z-index: 10;
 `;
 
-const SearchBar = styled.button`
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 500px;
-    margin: 0 auto;
-    height: 40px;
-    color: ${({ theme }) => theme.labelNormal};
-    ${DodamShape.ExtraSmall}
-    border: ${({ theme }) => `0.5px solid ${theme.primaryAlternative}`};
-    background-color: ${({ theme }) => theme.backgroundNormal};
-    padding: 10px;
-    text-align: left;
-    &:hover {
-        cursor: pointer;
-        background-color: ${({ theme }) => theme.primaryAssistive};
-    }
-`
+// const SearchBar = styled.button`
+//     display: flex;
+//     align-items: center;
+//     gap: 10px;
+//     width: 500px;
+//     margin: 0 auto;
+//     height: 40px;
+//     color: ${({ theme }) => theme.labelNormal};
+//     ${DodamShape.ExtraSmall}
+//     border: ${({ theme }) => `0.5px solid ${theme.primaryAlternative}`};
+//     background-color: ${({ theme }) => theme.backgroundNormal};
+//     padding: 10px;
+//     text-align: left;
+//     &:hover {
+//         cursor: pointer;
+//         background-color: ${({ theme }) => theme.primaryAssistive};
+//     }
+// `
